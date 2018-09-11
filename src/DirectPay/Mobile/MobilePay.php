@@ -1,7 +1,7 @@
 <?php
-namespace ddliu\alipay\DirectPay\Mobile;
-use ddliu\alipay\DirectPay\DirectPayBase;
-use ddliu\alipay\DirectPay\PayHelper;
+namespace briarbear\alipay\DirectPay\Mobile;
+use briarbear\alipay\DirectPay\DirectPayBase;
+use briarbear\alipay\DirectPay\PayHelper;
 
 class MobilePay extends DirectPayBase {
     const SERVICE = 'mobile.securitypay.pay';

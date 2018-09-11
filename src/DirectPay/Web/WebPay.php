@@ -1,26 +1,35 @@
 <?php
-namespace ddliu\alipay\DirectPay\Web;
-use ddliu\alipay\DirectPay\DirectPayBase;
-use ddliu\alipay\DirectPay\PayHelper;
 
-class WebPay extends DirectPayBase {
-    const GATEWAY = 'https://mapi.alipay.com/gateway.do?';
+namespace briarbear\alipay\DirectPay\Web;
+
+use briarbear\alipay\DirectPay\DirectPayBase;
+use briarbear\alipay\DirectPay\PayHelper;
+
+class WebPay extends DirectPayBase
+{
     const SERVICE = 'create_direct_pay_by_user';
 
-    protected function getDefaultOptions() {
-        return array_merge(parent::getDefaultOptions(), array(
+    /**
+     * @return array
+     */
+    protected function getDefaultOptions()
+    {
+        return array_merge(parent::getDefaultOptions(), [
             'service' => self::SERVICE,
-        ));
+        ]);
     }
 
     /**
      * 生成支付url
+     * @param array $data
+     * @return string
      */
-    public function generatePaymentUrl(array $data) {
+    public function generatePaymentUrl(array $data)
+    {
         $data = array_merge($this->getDefaultPaymentData(), $data);
 
         $para = $this->buildRequestPara($data);
 
-        return self::GATEWAY.PayHelper::createLinkstringUrlencode($para);
+        return $this->gateway . PayHelper::createLinkstringUrlencode($para);
     }
 }

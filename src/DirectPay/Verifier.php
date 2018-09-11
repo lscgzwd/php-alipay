@@ -1,9 +1,8 @@
 <?php
-namespace ddliu\alipay\DirectPay;
+namespace briarbear\alipay\DirectPay;
 
 class Verifier {
-    CONST HTTPS_VERIFY_URL = 'https://mapi.alipay.com/gateway.do?service=notify_verify&';
-    CONST HTTP_VERIFY_URL  = 'http://notify.alipay.com/trade/notify_query.do?';
+    CONST VERIFY_URI = 'service=notify_verify&';
 
     /**
      * 配置选项
@@ -30,7 +29,7 @@ class Verifier {
         }
 
         // 生成签名结果
-        if (!$this->getSignVeryfy($data, $data['sign'])) {
+        if (!$this->getSignVerify($data, $data['sign'])) {
             return false;
         }
 
@@ -66,11 +65,11 @@ class Verifier {
 
     /**
      * 获取返回时的签名验证结果
-     * @param $para_temp 通知返回来的参数数组
-     * @param $sign 返回的签名结果
-     * @return 签名验证结果
+     * @param array $para_temp 通知返回来的参数数组
+     * @param string $sign 返回的签名结果
+     * @return boolean 签名验证结果
      */
-    function getSignVeryfy($para_temp, $sign)
+    function getSignVerify($para_temp, $sign)
     {
         //除去待签名参数数组中的空值和签名参数
         $para_filter = PayHelper::paraFilter($para_temp);
@@ -94,8 +93,8 @@ class Verifier {
 
     /**
      * 获取远程服务器ATN结果,验证返回URL
-     * @param $notify_id 通知校验ID
-     * @return 服务器ATN结果
+     * @param string $notify_id 通知校验ID
+     * @return string 服务器ATN结果
      * 验证结果集：
      * invalid命令参数不对 出现这个错误，请检测返回处理中partner和key是否为空
      * true 返回正确信息
@@ -103,14 +102,9 @@ class Verifier {
      */
     private function getResponse($notify_id)
     {
-        $transport = strtolower($this->getOption('transport'));
-        if ($transport == 'https') {
-            $veryfy_url = self::HTTPS_VERIFY_URL;
-        } else {
-            $veryfy_url = self::HTTP_VERIFY_URL;
-        }
-        $veryfy_url .= 'partner=' . $this->getOption('partner') . '&notify_id=' . $notify_id;
-        $response_txt = $this->getHttpResponseGET($veryfy_url, $this->getOption('cacert'));
+        $verifyUrl = $this->getOption('gateway') . self::VERIFY_URI;
+        $verifyUrl .= 'partner=' . $this->getOption('partner') . '&notify_id=' . $notify_id;
+        $response_txt = $this->getHttpResponseGET($verifyUrl, $this->getOption('cacert'));
 
         return $response_txt;
     }
@@ -120,9 +114,9 @@ class Verifier {
      * 注意：
      * 1.使用Crul需要修改服务器中php.ini文件的设置，找到php_curl.dll去掉前面的";"就行了
      * 2.文件夹中cacert.pem是SSL证书请保证其路径有效，目前默认路径是：getcwd().'\\cacert.pem'
-     * @param $url 指定URL完整路径地址
-     * @param $cacert 指定当前工作目录绝对路径
-     * return 远程输出的数据
+     * @param string $url 指定URL完整路径地址
+     * @param string $cacert 指定当前工作目录绝对路径
+     * @return string 远程输出的数据
      */
     private function getHttpResponseGET($url, $cacert)
     {

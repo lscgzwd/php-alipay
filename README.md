@@ -1,6 +1,6 @@
 # php-alipay
 
-[![Travis](https://img.shields.io/travis/ddliu/php-alipay.svg?style=flat-square)](https://travis-ci.org/ddliu/php-alipay) [![Packagist](https://img.shields.io/packagist/v/ddliu/alipay.svg?style=flat-square)](https://packagist.org/packages/ddliu/alipay) [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg?style=flat-square)]()
+[![Travis](https://img.shields.io/travis/briarbear/php-alipay.svg?style=flat-square)](https://travis-ci.org/briarbear/php-alipay) [![Packagist](https://img.shields.io/packagist/v/briarbear/alipay.svg?style=flat-square)](https://packagist.org/packages/briarbear/alipay) [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg?style=flat-square)]()
 
 支付宝PHP SDK
 
@@ -17,8 +17,8 @@
 
 ```php
 <?php
-use ddliu\alipay\DirectPay\Web\WebPay;
-use ddliu\alipay\DirectPay\Mobile\MobilePay;
+use briarbear\alipay\DirectPay\Web\WebPay;
+use briarbear\alipay\DirectPay\Mobile\MobilePay;
 
 $webPay = new WebPay($options); // 参数参考配置选项说明
 $mobilePay = new MobilePay($options);

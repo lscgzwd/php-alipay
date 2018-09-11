@@ -1,16 +1,20 @@
 {
-    "name": "ddliu/alipay",
+    "name": "briarbear/alipay",
     "description": "Alipay PHP SDK",
     "license": "MIT",
     "authors": [
         {
             "name": "dong",
-            "email": "ddliuhb@gmail.com"
+            "email": "briarbearhb@gmail.com"
+        },
+        {
+            "name": "lushuncheng",
+            "email": "i@shuncheng.lu"
         }
     ],
     "autoload": {
         "psr-4": {
-            "ddliu\\alipay\\": "src/"
+            "briarbear\\alipay\\": "src/"
         }
     }
 }

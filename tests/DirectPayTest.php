@@ -1,6 +1,6 @@
 <?php
-use ddliu\alipay\DirectPay\Mobile\MobilePay;
-use ddliu\alipay\DirectPay\Web\WebPay;
+use briarbear\alipay\DirectPay\Mobile\MobilePay;
+use briarbear\alipay\DirectPay\Web\WebPay;
 class DirectPayTest extends PHPUnit_Framework_TestCase {
     protected $productData = array(
         'out_trade_no' => '123',
