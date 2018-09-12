@@ -2,7 +2,7 @@
 
 [![Travis](https://img.shields.io/travis/briarbear/php-alipay.svg?style=flat-square)](https://travis-ci.org/briarbear/php-alipay) [![Packagist](https://img.shields.io/packagist/v/briarbear/alipay.svg?style=flat-square)](https://packagist.org/packages/briarbear/alipay) [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg?style=flat-square)]()
 
-支付宝PHP SDK
+支付宝PHP SDK 老即时到帐接口，废弃，不推荐使用
 
 ## 内容
 
